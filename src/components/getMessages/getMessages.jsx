@@ -1,8 +1,7 @@
-import { useState } from 'react';
-import {token} from './../../App'
+import { useEffect, useState } from 'react';
 
 function GetMessages(props){
-    const [messages, setMessages] = useState("")
+    const [messages, setMessages] = useState("");
     async function authGet(url, token) {
         const response = await fetch(
             url,
@@ -13,20 +12,21 @@ function GetMessages(props){
             }
         );
         const data = await response.json();
-        console.log(data)
-        setMessages(JSON.stringify(data))
+        setMessages(data.map(
+            (item,idx)=><li key={idx}> Usuario:{item.source} Mensaje: {item.content}</li>
+        ))
         return data;
     }
-    function updateMessages(url,token){
-        console.log(props.token)
-        authGet(url +"/messages/",token)
-    
+    function updateMessages(){  
+    authGet(props.url +"/messages/",props.token)
     }
+    useEffect(
+        ()=>{setTimeout(updateMessages, 1000)},
+    )
 
     return(
         <>
-        <button onClick={()=>{updateMessages(props.url, props.token)}}>Refrescar mensajes</button>
-        <p>{messages}</p>
+        <ul>{messages}</ul>
         </>
     )
 }

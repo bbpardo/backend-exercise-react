@@ -13,10 +13,8 @@ export function App() {
     <>
       <Login url={host} />
       <SingIN setToken={setToken}/>
-      <SendMessage url={host} token={token}/>
       <GetMessages url={host} token={token}/>
-      
-      
+      <SendMessage url={host} token={token}/>
     </>
 
   );
