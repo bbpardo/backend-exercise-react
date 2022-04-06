@@ -9,6 +9,7 @@ function SendMessage(props){
         let data = JSON.stringify({content: textInput});
         console.log(data)
         postText(props.url +"/message/", data, props.token);
+        
     }
     async function postText(url, data, token){
         const response = await fetch(

@@ -17,6 +17,9 @@ function SingIN(props){
     }
     function signUser() {
         authToken(userInput, passInput)
+        props.setSignedTrue(true);
+        props.setSignedIn(false);
+        props.setButtonsLog(false);
     }
         return(
             <>
