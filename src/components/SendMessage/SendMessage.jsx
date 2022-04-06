@@ -9,6 +9,7 @@ function SendMessage(props){
         let data = JSON.stringify({content: textInput});
         console.log(data)
         postText(props.url +"/message/", data, props.token);
+        setTextInput("")
         
     }
     async function postText(url, data, token){
@@ -30,7 +31,7 @@ function SendMessage(props){
     }
     return(
         <>
-        <textarea name="" id="" cols="30" rows="10"onChange={changeTextHandler}></textarea>
+        <textarea name="" id="" cols="30" rows="10" placeholder='Escribe aqui...' onChange={changeTextHandler} value={textInput}></textarea>
         <button onClick={sendText}>Enviar</button>
         </>
     )
