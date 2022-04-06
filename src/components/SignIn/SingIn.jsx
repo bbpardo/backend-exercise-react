@@ -14,12 +14,14 @@ function SingIN(props){
         // Y se codifican en Base64
         const base64token = btoa(authToken); 
         props.setToken(`Basic ${base64token}`)
+        
     }
     function signUser() {
-        authToken(userInput, passInput)
+        authToken(userInput, passInput);
         props.setSignedTrue(true);
         props.setSignedIn(false);
         props.setButtonsLog(false);
+       
     }
         return(
             <>

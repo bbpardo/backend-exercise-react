@@ -11,14 +11,21 @@ function GetMessages(props){
                 }
             }
         );
+        console.log(response)
+        if(response.status != "200"){
+            props.setSignedTrue(false);
+            props.setSignedIn(true);
+            props.setButtonsLog(true);
+            }
         const data = await response.json();
         setMessages(data.map(
             (item,idx)=><li key={idx}> Usuario:{item.source} Mensaje: {item.content}</li>
         ))
-        return data;
+        return response;
     }
     function updateMessages(){  
-    authGet(props.url +"/messages/",props.token)
+     authGet(props.url +"/messages/",props.token)
+     
     }
     useEffect(
         ()=>{setTimeout(updateMessages, 1000)},

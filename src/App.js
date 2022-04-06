@@ -31,8 +31,8 @@ export function App() {
     { buttonsLog && <button type='submit' onClick={SingInHandler}>Iniciar sesion</button>}
     { ! buttonsLog && <button type='submit' onClick={closeSeason}>Cerrar Sesion</button>}
     { loggedIn && <Login url={host}/>}
-    { signedIn && <SingIN setToken={setToken} setButtonsLog={setButtonsLog} setSignedIn={setSignedIn} setSignedTrue={setSignedTrue}/>} 
-    { signedTrue && <GetMessages url={host} token={token} />} 
+    { signedIn && <SingIN setButtonsLog={setButtonsLog} setSignedIn={setSignedIn} setSignedTrue={setSignedTrue} setToken={setToken} />} 
+    { signedTrue && <GetMessages setButtonsLog={setButtonsLog} setSignedIn={setSignedIn} setSignedTrue={setSignedTrue} url={host} token={token} />} 
     { signedTrue && <SendMessage url={host} token={token} />} 
     </>
 
