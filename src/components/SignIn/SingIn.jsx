@@ -8,19 +8,26 @@ function SingIN(props){
     function changePassHandler(ev) {
         setPassInput(ev.target.value)
     }
-    function authToken(id, secret) {
-        // En autenticación Basic, usuario y contraseña se separan con ':'
-        const authToken = `${id}:${secret}`;
-        // Y se codifican en Base64
-        const base64token = btoa(authToken); 
-        props.setToken(`Basic ${base64token}`)
         
+    async function authToken(url,user, secret) {
+        fetch(url)
+        .then((response)=> response.json())
+        .then((data)=>{
+            let IdUser = data.find(item=> item.name === user)
+             console.log(IdUser)
+            // En autenticación Basic, usuario y contraseña se separan con ':'
+            const authToken = `${IdUser.id}:${secret}`;
+            // Y se codifican en Base64
+            const base64token = btoa(authToken); 
+            props.setToken(`Basic ${base64token}`)
+            props.setSignedTrue(true);
+            props.setSignedIn(false);
+            props.setButtonsLog(false);
+        }) 
     }
     function signUser() {
-        authToken(userInput, passInput);
-        props.setSignedTrue(true);
-        props.setSignedIn(false);
-        props.setButtonsLog(false);
+        authToken(props.url+"/users/", userInput, passInput);
+
        
     }
         return(
