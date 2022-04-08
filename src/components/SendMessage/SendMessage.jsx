@@ -7,7 +7,6 @@ function SendMessage(props){
     
     function sendText(){
         let data = JSON.stringify({content: textInput});
-        console.log(data)
         postText(props.url +"/message/", data, props.token);
         setTextInput("")
         
@@ -27,7 +26,6 @@ function SendMessage(props){
         );
     
         const responseData = await response.json();
-        console.log(responseData)
     }
     return(
         <>

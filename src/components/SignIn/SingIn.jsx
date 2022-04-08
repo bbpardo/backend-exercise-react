@@ -14,7 +14,6 @@ function SingIN(props){
         .then((response)=> response.json())
         .then((data)=>{
             let IdUser = data.find(item=> item.name === user)
-             console.log(IdUser)
             // En autenticación Basic, usuario y contraseña se separan con ':'
             const authToken = `${IdUser.id}:${secret}`;
             // Y se codifican en Base64
