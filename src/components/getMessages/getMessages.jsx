@@ -13,12 +13,13 @@ function GetMessages(props){
         );
         const data = await response.json();
         if(!response.ok){
-            alert("Usuario o contraseña incorrecta")
-            props.setSignedTrue(false);
-            props.setSignedIn(true);
+            props.setUpdateMessage(false)
             props.setButtonsLog(true);
-            
+            props.setToken("");
+            props.setSignedTrue(false);
+            props.setLoad(false)
         }
+        props.setLoad(false)
         fetch(props.url+"/users/")
             .then((response)=> response.json())
             .then((datausers)=> {
@@ -26,12 +27,10 @@ function GetMessages(props){
                     (item, idx)=>{
                         const user = datausers.find( items=> items.id === item.source)
                         return (
-                        <li key={idx}> Usuario:{user.name} Mensaje: {item.content}</li>)
+                        <li key={idx}>{user.name} : {item.content}</li>)
                     }))
                 
             });
-
-        
         
         
     }

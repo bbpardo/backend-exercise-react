@@ -9,7 +9,7 @@ function SingIN(props){
         setPassInput(ev.target.value)
     }
         
-    async function authToken(url,user, secret) {
+    async function authToken(url ,user, secret) {
         fetch(url)
         .then((response)=> response.json())
         .then((data)=>{
@@ -19,10 +19,13 @@ function SingIN(props){
             // Y se codifican en Base64
             const base64token = btoa(authToken); 
             props.setToken(`Basic ${base64token}`)
+            props.setUpdateMessage(true);
             props.setSignedTrue(true);
             props.setSignedIn(false);
             props.setButtonsLog(false);
-        }) 
+            props.setLoad(true)
+        })
+        
     }
     function signUser() {
         authToken(props.url+"/users/", userInput, passInput);
