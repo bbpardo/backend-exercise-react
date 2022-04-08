@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 function SingIN(props){
     const [userInput, setUserInput] = useState("")
     const [passInput, setPassInput] = useState("")

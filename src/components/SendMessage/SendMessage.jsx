@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 function SendMessage(props){
     const [textInput, setTextInput] = useState("")
     function changeTextHandler(ev) {
@@ -12,7 +12,7 @@ function SendMessage(props){
         
     }
     async function postText(url, data, token){
-        const response = await fetch(
+        await fetch(
             url,
             {
                 method: 'POST',
@@ -24,8 +24,6 @@ function SendMessage(props){
                 }
             }
         );
-    
-        const responseData = await response.json();
     }
     return(
         <>
