@@ -19,15 +19,24 @@ function GetMessages(props){
             props.setSignedTrue(false);
             props.setLoad(false)
         }
+        function addZero(i) {
+            if (i < 10) {i = "0" + i}
+            return i;
+        }
         props.setLoad(false)
         fetch(props.url+"/users/")
             .then((response)=> response.json())
             .then((datausers)=> {
                 setMessages(data.map(
                     (item, idx)=>{
+                    const d = new Date(item.time);
+                    let h = addZero(d.getHours());
+                    let m = addZero(d.getMinutes());
+                    let s = addZero(d.getSeconds());
+                    let time = (h+1) + ":" + m + ":" + s;
                         const user = datausers.find( items=> items.id === item.source)
                         return (
-                        <li key={idx}>{user.name} : {item.content}</li>)
+                        <p key={idx}>{time} | {user.name} : {item.content}</p>)
                     }))
                 
             });
